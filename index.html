@@ -1,0 +1,287 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0}
+  .lp{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;overflow-x:hidden}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+
+  /* BG shapes */
+  .bg-blob{position:absolute;border-radius:50%;pointer-events:none;z-index:0}
+
+  /* NAV */
+  .nav{display:flex;justify-content:space-between;align-items:center;padding:1.2rem 3rem;position:relative;z-index:10;border-bottom:0.5px solid rgba(255,255,255,0.07)}
+  .nav-logo{font-size:15px;font-weight:600;letter-spacing:0.02em;color:#fff}
+  .nav-logo span{color:#c9a84c}
+  .nav-links{display:flex;gap:2rem}
+  .nav-links a{font-size:13px;color:rgba(255,255,255,0.55);text-decoration:none;transition:color 0.2s;letter-spacing:0.01em}
+  .nav-links a:hover{color:#fff}
+  .nav-cta{background:#c9a84c;color:#0a0a0a;border:none;padding:0.55rem 1.3rem;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;letter-spacing:0.01em;transition:opacity 0.2s}
+  .nav-cta:hover{opacity:0.88}
+
+  /* HERO */
+  .hero{position:relative;text-align:center;padding:7rem 2rem 5rem;overflow:hidden}
+  .hero-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(201,168,76,0.12);border:0.5px solid rgba(201,168,76,0.3);color:#c9a84c;font-size:11.5px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;padding:0.4rem 1rem;border-radius:50px;margin-bottom:2rem}
+  .hero-dot{width:6px;height:6px;background:#c9a84c;border-radius:50%;animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+  .hero h1{font-size:clamp(2.4rem,5vw,4rem);font-weight:800;line-height:1.12;letter-spacing:-0.03em;margin-bottom:1.5rem;max-width:720px;margin-left:auto;margin-right:auto}
+  .hero h1 em{font-family:'Playfair Display',serif;font-style:italic;background:linear-gradient(135deg,#c9a84c,#f0d080);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .hero-sub{color:rgba(255,255,255,0.5);font-size:1.05rem;max-width:520px;margin:0 auto 2.5rem;line-height:1.75;font-weight:300}
+  .hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+  .btn-gold{background:linear-gradient(135deg,#c9a84c,#e8c96a);color:#0a0a0a;border:none;padding:0.85rem 2.2rem;border-radius:10px;font-size:0.9rem;font-weight:700;cursor:pointer;letter-spacing:0.02em;transition:transform 0.2s,box-shadow 0.2s}
+  .btn-gold:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(201,168,76,0.3)}
+  .btn-ghost{background:transparent;color:rgba(255,255,255,0.7);border:0.5px solid rgba(255,255,255,0.2);padding:0.85rem 2.2rem;border-radius:10px;font-size:0.9rem;font-weight:500;cursor:pointer;letter-spacing:0.02em;transition:all 0.2s}
+  .btn-ghost:hover{border-color:rgba(255,255,255,0.5);color:#fff}
+  .hero-meta{display:flex;gap:2.5rem;justify-content:center;margin-top:3.5rem;padding-top:3rem;border-top:0.5px solid rgba(255,255,255,0.07)}
+  .hero-stat-n{font-size:1.6rem;font-weight:700;color:#fff;display:block}
+  .hero-stat-l{font-size:12px;color:rgba(255,255,255,0.35);letter-spacing:0.06em;text-transform:uppercase;margin-top:2px}
+
+  /* SECTION */
+  .section{padding:5rem 2rem;position:relative}
+  .section-label{font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#c9a84c;margin-bottom:0.75rem}
+  .section-title{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;letter-spacing:-0.025em;margin-bottom:0.75rem;line-height:1.25}
+  .section-sub{color:rgba(255,255,255,0.45);font-size:0.95rem;line-height:1.75;max-width:520px}
+
+  /* OVERVIEW CARDS */
+  .overview{background:#0f0f0f;border-top:0.5px solid rgba(255,255,255,0.06)}
+  .overview-inner{max-width:1100px;margin:0 auto}
+  .overview-header{text-align:center;margin-bottom:3.5rem}
+  .overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem}
+  .ov-card{background:#161616;border:0.5px solid rgba(255,255,255,0.08);border-radius:16px;padding:1.75rem;transition:border-color 0.3s,transform 0.3s}
+  .ov-card:hover{border-color:rgba(201,168,76,0.35);transform:translateY(-4px)}
+  .ov-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;font-size:18px}
+  .ov-icon.gold{background:rgba(201,168,76,0.12)}
+  .ov-icon.blue{background:rgba(59,130,246,0.12)}
+  .ov-icon.green{background:rgba(34,197,94,0.12)}
+  .ov-icon.purple{background:rgba(168,85,247,0.12)}
+  .ov-card h3{font-size:0.82rem;font-weight:600;color:rgba(255,255,255,0.4);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.6rem}
+  .ov-card p{font-size:0.88rem;color:rgba(255,255,255,0.65);line-height:1.65}
+  .ov-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:0.8rem}
+  .tag{display:inline-block;font-size:11px;padding:3px 10px;border-radius:50px;background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.5);border:0.5px solid rgba(255,255,255,0.1)}
+
+  /* SKILLS */
+  .skills{background:#0a0a0a;border-top:0.5px solid rgba(255,255,255,0.06)}
+  .skills-inner{max-width:1100px;margin:0 auto}
+  .skills-header{margin-bottom:3.5rem}
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem}
+  .sk-card{background:#111;border:0.5px solid rgba(255,255,255,0.07);border-radius:14px;padding:1.5rem;text-align:center;cursor:default;transition:all 0.3s;position:relative;overflow:hidden}
+  .sk-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,168,76,0.06),transparent);opacity:0;transition:opacity 0.3s;pointer-events:none}
+  .sk-card:hover{border-color:rgba(201,168,76,0.3);transform:translateY(-4px)}
+  .sk-card:hover::before{opacity:1}
+  .sk-ico{font-size:28px;margin-bottom:0.9rem;display:block}
+  .sk-name{font-size:0.82rem;font-weight:600;color:rgba(255,255,255,0.75);letter-spacing:0.01em}
+  .sk-desc{font-size:0.75rem;color:rgba(255,255,255,0.35);margin-top:0.35rem;line-height:1.5}
+
+  /* STEPS */
+  .steps{background:#0f0f0f;border-top:0.5px solid rgba(255,255,255,0.06)}
+  .steps-inner{max-width:1100px;margin:0 auto}
+  .steps-header{text-align:center;margin-bottom:4rem}
+  .steps-track{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+  .steps-track::before{content:'';position:absolute;top:28px;left:12.5%;right:12.5%;height:0.5px;background:linear-gradient(90deg,rgba(201,168,76,0.5),rgba(201,168,76,0.2));z-index:0}
+  .step-item{text-align:center;padding:0 1rem;position:relative;z-index:1}
+  .step-num{width:56px;height:56px;border-radius:50%;border:0.5px solid rgba(201,168,76,0.4);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;font-size:22px;background:#0f0f0f;position:relative;transition:border-color 0.3s}
+  .step-item:hover .step-num{border-color:rgba(201,168,76,0.9);box-shadow:0 0 20px rgba(201,168,76,0.15)}
+  .step-label{font-size:0.82rem;font-weight:600;color:#fff;margin-bottom:0.4rem;letter-spacing:0.01em}
+  .step-desc{font-size:0.75rem;color:rgba(255,255,255,0.35);line-height:1.55}
+  .step-n{font-size:11px;font-weight:700;color:#c9a84c;letter-spacing:0.08em;margin-bottom:0.5rem}
+
+  /* DELIVERABLES */
+  .deliv{background:#0a0a0a;border-top:0.5px solid rgba(255,255,255,0.06)}
+  .deliv-inner{max-width:1100px;margin:0 auto}
+  .deliv-header{margin-bottom:3.5rem}
+  .deliv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+  .deliv-card{border-radius:18px;padding:2.5rem 2rem;text-align:center;border:0.5px solid rgba(255,255,255,0.08);background:#111;position:relative;overflow:hidden;transition:all 0.3s}
+  .deliv-card.featured{border-color:rgba(201,168,76,0.35);background:#141209}
+  .deliv-card:hover{transform:translateY(-5px)}
+  .deliv-card.featured:hover{box-shadow:0 20px 60px rgba(201,168,76,0.1)}
+  .deliv-badge{position:absolute;top:16px;right:16px;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#c9a84c;background:rgba(201,168,76,0.12);border:0.5px solid rgba(201,168,76,0.3);padding:3px 10px;border-radius:50px}
+  .deliv-ico{font-size:36px;margin-bottom:1.25rem;display:block}
+  .deliv-card h3{font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:0.6rem;letter-spacing:-0.01em}
+  .deliv-card p{font-size:0.82rem;color:rgba(255,255,255,0.45);line-height:1.65}
+
+  /* FOOTER */
+  .footer{background:#080808;border-top:0.5px solid rgba(255,255,255,0.06);padding:2.5rem 2rem;text-align:center}
+  .footer-logo{font-size:14px;font-weight:700;color:rgba(255,255,255,0.6);letter-spacing:0.04em;margin-bottom:0.6rem}
+  .footer-logo span{color:#c9a84c}
+  .footer-meta{font-size:12px;color:rgba(255,255,255,0.2);letter-spacing:0.03em}
+  .footer-meta a{color:rgba(201,168,76,0.7);text-decoration:none}
+</style>
+
+<div class="lp">
+  <h2 class="sr-only">Landing page for the college project: Build a Professional Website for a Local Business</h2>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-logo">Web<span>Project</span></div>
+    <div class="nav-links">
+      <a href="#">Overview</a>
+      <a href="#">Process</a>
+      <a href="#">Deliverables</a>
+    </div>
+    <button class="nav-cta" onclick="document.querySelector('.hero').scrollIntoView({behavior:'smooth'})">Start Project</button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="bg-blob" style="width:600px;height:600px;background:radial-gradient(circle,rgba(201,168,76,0.06) 0%,transparent 70%);top:-100px;left:50%;transform:translateX(-50%)"></div>
+    <div class="hero-tag">
+      <span class="hero-dot"></span>
+      FutureInterns · FUTURE_FS_03
+    </div>
+    <h1>Build a Professional Website<br/>for a <em>Real Business</em></h1>
+    <p class="hero-sub">A hands-on project where you design and develop a live website for a local business — restaurant, salon, clinic, or more — and pitch it to the owner.</p>
+    <div class="hero-btns">
+      <button class="btn-gold">Start Your Project</button>
+      <button class="btn-ghost">View Process →</button>
+    </div>
+    <div class="hero-meta">
+      <div>
+        <span class="hero-stat-n">HTML/CSS/JS</span>
+        <span class="hero-stat-l">Tech Stack</span>
+      </div>
+      <div>
+        <span class="hero-stat-n">4 Phases</span>
+        <span class="hero-stat-l">Workflow</span>
+      </div>
+      <div>
+        <span class="hero-stat-n">Live Demo</span>
+        <span class="hero-stat-l">Deliverable</span>
+      </div>
+      <div>
+        <span class="hero-stat-n">Real Client</span>
+        <span class="hero-stat-l">Experience</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- OVERVIEW -->
+  <section class="section overview">
+    <div class="overview-inner">
+      <div class="overview-header">
+        <p class="section-label">Task Overview</p>
+        <h2 class="section-title">Everything You Need to Know</h2>
+        <p class="section-sub" style="margin:0 auto">Four pillars that define the scope, tools, skills, and deliverables of this project.</p>
+      </div>
+      <div class="overview-grid">
+        <div class="ov-card">
+          <div class="ov-icon gold">🎯</div>
+          <h3>Task</h3>
+          <p>Build a professional website for a real local business — restaurant, café, gym, salon, boutique, or clinic — and pitch it live to the owner.</p>
+        </div>
+        <div class="ov-card">
+          <div class="ov-icon blue">🛠️</div>
+          <h3>Tools</h3>
+          <p>Use modern web technologies to design and build your site.</p>
+          <div class="ov-tags">
+            <span class="tag">HTML5</span>
+            <span class="tag">CSS3</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">WordPress</span>
+            <span class="tag">Figma</span>
+            <span class="tag">Canva</span>
+          </div>
+        </div>
+        <div class="ov-card">
+          <div class="ov-icon green">💡</div>
+          <h3>Skills Gained</h3>
+          <p>Real-world web development, client communication, project pitching, and business problem solving.</p>
+        </div>
+        <div class="ov-card">
+          <div class="ov-icon purple">📦</div>
+          <h3>Deliverables</h3>
+          <p>A live website demo, a GitHub repository with clean code, and a short pitch explaining how the site grows the business.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section skills">
+    <div class="skills-inner">
+      <div class="skills-header">
+        <p class="section-label">Features & Skills</p>
+        <h2 class="section-title">What You Will Master</h2>
+        <p class="section-sub">From layout to live deployment — these are the core competencies you build.</p>
+      </div>
+      <div class="skills-grid">
+        <div class="sk-card"><span class="sk-ico">🎨</span><div class="sk-name">UI Design</div><div class="sk-desc">Figma, wireframing, visual hierarchy</div></div>
+        <div class="sk-card"><span class="sk-ico">⚡</span><div class="sk-name">Frontend Dev</div><div class="sk-desc">HTML, CSS, JavaScript, responsive</div></div>
+        <div class="sk-card"><span class="sk-ico">📱</span><div class="sk-name">Mobile First</div><div class="sk-desc">Media queries, fluid layouts, touch UX</div></div>
+        <div class="sk-card"><span class="sk-ico">🌐</span><div class="sk-name">Deployment</div><div class="sk-desc">GitHub Pages, Netlify, Vercel</div></div>
+        <div class="sk-card"><span class="sk-ico">🤝</span><div class="sk-name">Client Comms</div><div class="sk-desc">Requirements, feedback loops, revisions</div></div>
+        <div class="sk-card"><span class="sk-ico">📣</span><div class="sk-name">Pitching</div><div class="sk-desc">Present, demo, and defend your work</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEPS -->
+  <section class="section steps">
+    <div class="steps-inner">
+      <div class="steps-header">
+        <p class="section-label">Process</p>
+        <h2 class="section-title">Four Phases to Launch</h2>
+        <p class="section-sub" style="margin:0 auto;text-align:center">A clear, repeatable workflow from discovery to delivery.</p>
+      </div>
+      <div class="steps-track">
+        <div class="step-item">
+          <div class="step-num">🔍</div>
+          <div class="step-n">Phase 01</div>
+          <div class="step-label">Choose Business</div>
+          <div class="step-desc">Pick a local business, meet the owner, and gather requirements.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">🎨</div>
+          <div class="step-n">Phase 02</div>
+          <div class="step-label">Design</div>
+          <div class="step-desc">Create wireframes and high-fidelity mockups in Figma or Canva.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">💻</div>
+          <div class="step-n">Phase 03</div>
+          <div class="step-label">Build</div>
+          <div class="step-desc">Develop the full site with clean, responsive code and push to GitHub.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">🚀</div>
+          <div class="step-n">Phase 04</div>
+          <div class="step-label">Pitch</div>
+          <div class="step-desc">Demo the live site to the owner and explain the business value.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DELIVERABLES -->
+  <section class="section deliv">
+    <div class="deliv-inner">
+      <div class="deliv-header">
+        <p class="section-label">Deliverables</p>
+        <h2 class="section-title">What You Submit</h2>
+        <p class="section-sub">Three concrete outputs that prove your skills to the world.</p>
+      </div>
+      <div class="deliv-grid">
+        <div class="deliv-card featured">
+          <span class="deliv-badge">Primary</span>
+          <span class="deliv-ico">🌐</span>
+          <h3>Live Website Demo</h3>
+          <p>A fully deployed, publicly accessible website for the business — responsive on all devices.</p>
+        </div>
+        <div class="deliv-card">
+          <span class="deliv-ico">🐙</span>
+          <h3>GitHub Repository</h3>
+          <p>Clean, well-structured codebase with a proper README and commit history on GitHub.</p>
+        </div>
+        <div class="deliv-card">
+          <span class="deliv-ico">📝</span>
+          <h3>Pitch Explanation</h3>
+          <p>A short write-up or presentation describing how the website helps the business grow online.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">Web<span>Project</span></div>
+    <div class="footer-meta">Built by Chinmay · FUTURE_FS_03 · FutureInterns Full Stack Web Development Internship</div>
+  </footer>
+</div>
